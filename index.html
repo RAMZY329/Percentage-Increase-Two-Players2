@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Two-Player Percentage Increase Hunt</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ffcc33, #ff6699);
+            color: #fff;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        h1, h2 {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #password-screen, #default-screen, #summary-screen {
+            padding: 20px;
+            width: 80%;
+            max-width: 1200px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+        }
+
+        #game-screen {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 0;
+            position: relative;
+            overflow-y: auto;
+        }
+
+        .player-screen {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 50vh;
+            padding: 20px;
+        }
+
+        .player1 {
+            transform: rotate(180deg);
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .player2 {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .problem {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .options {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+        }
+
+        .options button {
+            background-color: #ffcc33;
+            border: none;
+            padding: 15px 25px;
+            font-size: 1.2em;
+            color: #000;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .options button:hover {
+            background-color: #ff6699;
+            color: #fff;
+        }
+
+        .score {
+            margin-top: 10px;
+            font-size: 1.2em;
+        }
+
+        #timer {
+            font-size: 2em;
+            color: #ffcc33;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #ff6699;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #ffcc33;
+            color: #000;
+        }
+
+        input[type="password"] {
+            padding: 10px;
+            font-size: 1.2em;
+            border-radius: 5px;
+            border: none;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Password Screen -->
+    <div id="password-screen">
+        <h1>Enter Password to Start the Game</h1>
+        <input type="password" id="password" placeholder="Enter Password">
+        <button id="submit-password">Submit</button>
+        <div id="password-error" class="hidden" style="color: red; margin-top: 10px;">Incorrect password. Please try again.</div>
+    </div>
+
+    <!-- Default Screen -->
+    <div id="default-screen" class="hidden">
+        <h1>Percentage Increase Hunt by Sumimao NHS ICT Club</h1>
+        <label for="game-time">Select Game Time (seconds): </label>
+        <input type="number" id="game-time" value="60" min="30" max="300">
+        <button id="start-game">Start Game</button>
+        <button id="show-summary">Show Summary</button>
+    </div>
+
+    <!-- Game Screen -->
+    <div id="game-screen" class="hidden">
+        <div id="timer">Time Left: 60s</div> <!-- Timer display -->
+
+        <div class="player-screen player1" id="player1">
+            <h2>Player 1</h2>
+            <div class="problem"></div>
+            <div class="options"></div>
+            <div class="score">Score: 0</div>
+        </div>
+
+        <div class="player-screen player2" id="player2">
+            <h2>Player 2</h2>
+            <div class="problem"></div>
+            <div class="options"></div>
+            <div class="score">Score: 0</div>
+        </div>
+    </div>
+
+    <!-- Summary Screen -->
+    <div id="summary-screen" class="hidden">
+        <h2>Game Summary</h2>
+        <div id="summary"></div>
+        <button id="back-to-menu">Back to Menu</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+
